@@ -1,13 +1,7 @@
- const Engineer = require('./lib/engineer.js');
- const Manager = require('./lib/manager.js');
- const Intern = require('./lib/intern.js');
+ const fs = require("fs");
 
- 
-
-
-
-function generateHtml(data) {
-    return `<!DOCTYPE html>
+ let htmlMain =
+    `<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -23,93 +17,79 @@ function generateHtml(data) {
                 The Best Company in the World!
               </p>
               <p class="subtitle">
-                Team Profile
+                Check out this amazing team!
               </p>
             </div>
           </section>
     </header>
+    <br>
     <body>
-        <div class="container is-flex-direction-row block">
-            <div class="card block">
-                <div class="card-content block">
-                    <section class="hero is-primary block">
-                        <div class="hero-body">
-                          <p class="title">
-                            Name:
-                          </p>
-                          <p class="subtitle">
-                            Title:
-                          </p>
-                        </div>
-                    </section>
-                    <div class="container block">
-                        <div class="card block">
-                            ID:
-                        </div>
-                        <div class="card block">
-                            Email:
-                        </div>
-                        <div class="card block">
-                            Employee specific info:
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-           <div class="card block">
-                <div class="card-content block">
-                    <section class="hero is-primary block">
-                        <div class="hero-body">
-                          <p class="title">
-                            Name:
-                          </p>
-                          <p class="subtitle">
-                            Title:
-                          </p>
-                        </div>
-                    </section>
-                    <div class="container block">
-                        <div class="card block">
-                            ID:
-                        </div>
-                        <div class="card block">
-                            Email:
-                        </div>
-                        <div class="card block">
-                            Employee specific info:
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="card block">
-                <div class="card-content block">
-                    <section class="hero is-primary block">
-                        <div class="hero-body">
-                          <p class="title">
-                            Name:
-                          </p>
-                          <p class="subtitle">
-                            Title:
-                          </p>
-                        </div>
-                    </section>
-                    <div class="container block">
-                        <div class="card block">
-                            ID:
-                        </div>
-                        <div class="card block">
-                            Email:
-                        </div>
-                        <div class="card block">
-                            Employee specific info:
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="container is-flex-direction-row block"> 
+    `;
+
+function generateHtml(data) {
+    console.log(data);
+    let htmlEnding = `</div>
     </body>
     </html>`;
+    
+    for (let i = 0; i < data.length; i++) {
+        let htmlCards = `<div class="card block">
+        <div class="card-content block">
+            <section class="hero is-primary block">
+                <div class="hero-body">
+                  <p class="title">
+                    Name: ${data[i].name}
+                  </p>
+                  <p class="subtitle">
+                    Title: ${data[i].title}
+                  </p>
+                </div>
+            </section>
+            <div class="container block">
+                <div class="card block">
+                    ID: ${data[i].id}
+                </div>
+                <div class="card block">
+                    Email: ${data[i].email}
+                </div>`;
+            if(data[i].officeNumber) {
+            htmlCards += `
+            <div class="card block">
+                Office Number: ${data[i].officeNumber}
+            </div>
+            `
+            }
+            if(data[i].school) {
+            htmlCards += `
+            <div class="card block">
+                School/University: ${data[i].school}
+            </div>
+            `
+            }
+            if(data[i].githubUsername) {
+            htmlCards += `
+            <div class="card block">
+                Github: ${data[i].githubUsername}
+            </div>
+            `
+            }
+        htmlCards += `
+        </div>
+        </div>
+        </div>
+        
+        `
+        htmlMain += htmlCards;
+    }
+    htmlMain += htmlEnding;
+    
+    fs.writeFile("index.html", htmlMain, (err) =>
+         err ? console.error(err) : console.log('HTML CREATED')
+         );
 }
+ 
+
+       
 
 module.exports = generateHtml;
