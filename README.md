@@ -18,7 +18,8 @@ If you do not already ahve a package.json file then you will have to run 'npm in
 
 ## Usage
 Takes in user input and give back a stylized team profile page
-
+- [Repo Link](https://github.com/Nickhyman465/Object-Oriented-Programming-Team-Profile-Generator) 
+- [Demo](https://drive.google.com/file/d/1pXwBzPC5oMvI6pStFesOraAdjl_YN8uO/view)
 ## Credits
 
 
