@@ -171,20 +171,11 @@ function addIntern() {
         })
 }
 
-//  function writeToFile(fileName, data) {
-//      fs.writeFile(fileName, generateHtml(data), (err) =>
-//    err ? console.error(err) : console.log('HTML CREATED')
-//    );
-//  }
-
-
   function currentTeam(teamMembers) {
-     
-        //  console.log(teamMembers);
-         generateHtml(teamMembers);
-     
-  }
+        generateHtml(teamMembers);
+    }
 
+//Function to start the program and make sure you have a manager present for this team project
 function companyReady() { 
     inquirer.prompt([{
         type: 'confirm',

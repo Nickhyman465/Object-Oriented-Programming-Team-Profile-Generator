@@ -1,5 +1,7 @@
- const fs = require("fs");
+//This file handles the html creation and file writing
+const fs = require("fs");
 
+//This variable handles the main layout of the HTML 
  let htmlMain =
     `<!DOCTYPE html>
     <html lang="en">
@@ -27,12 +29,14 @@
         <div class="container is-flex-direction-row block"> 
     `;
 
+//We can this function once the user selects "View my current team" form the prompts
 function generateHtml(data) {
     console.log(data);
     let htmlEnding = `</div>
     </body>
     </html>`;
     
+//Loops through our list of team members, creates a card for them with all their information 
     for (let i = 0; i < data.length; i++) {
         let htmlCards = `<div class="card block">
         <div class="card-content block">
@@ -84,6 +88,7 @@ function generateHtml(data) {
     }
     htmlMain += htmlEnding;
     
+//Once loop is done we write out the index.html file
     fs.writeFile("index.html", htmlMain, (err) =>
          err ? console.error(err) : console.log('HTML CREATED')
          );
